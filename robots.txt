@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /search?
+Disallow: /search/
+Disallow: /?s=
+Disallow: /*?q=
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /login/
+Disallow: /register/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /account/
+
+Crawl-delay: 1
+
+Sitemap: https://GEN AI Video/sitemap.xml
