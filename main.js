@@ -38,7 +38,7 @@ window.addEventListener('message', (message) => {
     console.log(message.data);
     if (message.data?.bot) {
         const wrapper = document.querySelector('#wrapper_frame');
-        console.log(wrapper);
+        
         wrapper.remove();
         setTimeout(toggleLoad, 500);
 
