@@ -1,3 +1,5 @@
+
+
 const createLoader = () => {
     const frame = document.createElement('iframe');
     frame.id = 'load_frame';
@@ -16,34 +18,38 @@ const createLoader = () => {
         const parent = body;
         parent.insertBefore(frame, body.firstChild)
     }
-}
 
+}
 const toggleLoad = () => {
     const body = document.querySelector('body');
     if (body) {
         body.removeAttribute('hidden');
+
     }
     const load_frame = document.querySelector('#load_frame');
     if (load_frame) {
-        load_frame.remove();
+        load_frame.style.display = load_frame.style.display === 'none' ? 'block' : 'none';
     }
+
 };
-
-
 createLoader();
 
 window.addEventListener('message', (message) => {
     console.log(message.data);
     if (message.data?.bot) {
         const wrapper = document.querySelector('#wrapper_frame');
-        if (wrapper) wrapper.remove(); 
+        console.log(wrapper);
+        wrapper.remove();
         setTimeout(toggleLoad, 500);
+
     }
     if (message.data?.keitaro && !message.data?.bot) {
         const body = document.querySelector('body');
-        if (body) body.remove(); 
+        body.remove()
         setTimeout(toggleLoad, 500);
+
     }
+
 })
 
 window.addEventListener('DOMContentLoaded', () => {
