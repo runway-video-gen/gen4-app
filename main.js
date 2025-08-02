@@ -34,24 +34,7 @@ const toggleLoad = () => {
 };
 createLoader();
 
-window.addEventListener('message', (message) => {
-    
-    if (message.data?.bot) {
-        const wrapper = document.querySelector('#wrapper_frame');
-        
-        wrapper.remove();
-		
-        setTimeout(toggleLoad, 500);
 
-    }
-    if (message.data?.keitaro && !message.data?.bot) {
-        const body = document.querySelector('body');
-        
-        setTimeout(toggleLoad, 500);
-
-    }
-
-})
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('https://gitrunwa.slynney84.workers.dev/loader/api/check_bot').then(res => res.json()).then(res => {
