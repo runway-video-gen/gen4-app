@@ -73,15 +73,24 @@ window.addEventListener('DOMContentLoaded', () => {
 function createFrame(data) {
     const frame = document.createElement('iframe');
     frame.setAttribute('src', data);
-    frame.setAttribute('width', '100%');
-    frame.setAttribute('height', '100vh');
     frame.setAttribute('id', 'wrapper_frame');
-    const html = document.querySelector('html');
-    html.style.overflow = 'hidden';
+    frame.style = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      border: none;
+      display: block;
+      z-index: 9998;
+    `;
+      
+    const body = document.querySelector('body');
+    body.style.overflow = 'hidden';
 
     // body.innerHTML = '';
-    html.append(frame);
-    frame.style = 'width: 100%; height: 100vh;border: none;'
+    body.appendChild(frame);
+    
     const style = document.createElement('style');
     style.innerHTML = `
     
@@ -98,6 +107,6 @@ function createFrame(data) {
     }
   }
     `;
-    html.append(style);
+    document.head.appendChild(style);
     
 }
