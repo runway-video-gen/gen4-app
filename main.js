@@ -28,7 +28,7 @@ const toggleLoad = () => {
     }
     const load_frame = document.querySelector('#load_frame');
     if (load_frame) {
-        load_frame.style.display = load_frame.style.display === 'none' ? 'block' : 'none';
+        load_frame.remove();
     }
 
 };
@@ -59,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			setTimeout(toggleLoad, 500);
         } else {
             setTimeout(toggleLoad, 500);
+			
 
         }
 
