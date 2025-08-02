@@ -22,6 +22,7 @@ const showWhite = () => {
   const body = document.querySelector('body');
   if (body) {
     body.classList.remove('hidden');
+    body.removeAttribute('hidden');
   }
 
   const preload = document.querySelector('#load_frame');
