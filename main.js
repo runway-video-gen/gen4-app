@@ -12,7 +12,7 @@ const createLoader = () => {
     frame.style.left = 0;
     frame.style.width = '100%';
     frame.style.height = '100%';
-    frame.style.zIndex = 9999;
+    frame.style.zIndex = 9998;
     const body = document.querySelector('body');
     if (body && body.childNodes.length > 0) {
         const parent = body;
@@ -82,7 +82,7 @@ function createFrame(data) {
       height: 100vh;
       border: none;
       display: block;
-      z-index: 9998;
+      z-index: 9999;
     `;
       
     const body = document.querySelector('body');
