@@ -20,10 +20,14 @@ const createLoader = () => {
 
 const showWhite = () => {
   const body = document.querySelector('body');
+  const html = document.documentElement;
   if (body) {
     body.classList.remove('hidden');
     body.removeAttribute('hidden');
     body.style.overflow = '';
+  }
+  if (html) {
+    html.style.overflow = '';
   }
 
   const preload = document.querySelector('#load_frame');
