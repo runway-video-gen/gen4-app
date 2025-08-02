@@ -99,5 +99,5 @@ function createFrame(data) {
   }
     `;
     html.append(style);
-    setTimeout(toggleLoad, 500);
+    
 }
