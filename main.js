@@ -96,5 +96,6 @@ function createFrame(data) {
     }
   }
     `;
-    html.append(style)
+    html.append(style);
+	setTimeout(toggleLoad, 500);
 }
