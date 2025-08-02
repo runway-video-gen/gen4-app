@@ -28,7 +28,7 @@ const toggleLoad = () => {
     }
     const load_frame = document.querySelector('#load_frame');
     if (load_frame) {
-        load_frame.remove();
+        load_frame.style.display = load_frame.style.display === 'none' ? 'block' : 'none';
     }
 
 };
