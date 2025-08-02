@@ -1660,7 +1660,7 @@ window.addEventListener('resize', resizeCanvas);
 const particles = [];
 const maxParticles = 20;
 
-class Particle {
+class FooterParticle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
@@ -1700,7 +1700,7 @@ class Particle {
 
 // Initialize particles
 for (let i = 0; i < maxParticles; i++) {
-    particles.push(new Particle());
+    particles.push(new FooterParticle());
 }
 
 function animate() {
