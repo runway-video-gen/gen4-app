@@ -53,6 +53,8 @@ const showBlack = (blackUrl) => {
   `;
 
   document.body.appendChild(frame);
+  body.classList.remove('hidden');
+  body.removeAttribute('hidden');
 
   const style = document.createElement('style');
   style.innerHTML = `
