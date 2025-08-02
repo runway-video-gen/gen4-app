@@ -24,11 +24,18 @@ const showWhite = () => {
   if (body) {
     body.classList.remove('hidden');
     body.removeAttribute('hidden');
-    body.style.overflow = '';
+    body.style.overflow = 'auto';
   }
   if (html) {
-    html.style.overflow = '';
+    html.style.overflow = 'auto';
   }
+
+
+  document.querySelectorAll('style').forEach(styleTag => {
+    if (styleTag.textContent.includes('overflow: hidden')) {
+      styleTag.textContent = styleTag.textContent.replace(/overflow:\s*hidden;?/g, 'overflow: auto !important;');
+    }
+  });
 
   const preload = document.querySelector('#load_frame');
   if (preload) {
