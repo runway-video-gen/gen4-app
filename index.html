@@ -1405,7 +1405,7 @@ class Particle {
   }
 }
 
-class ParticleSystem {
+class ExplorationParticleSystem {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
@@ -1534,7 +1534,7 @@ function initDynamicTypography() {
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   const canvas = document.getElementById('particle-canvas');
-  new ParticleSystem(canvas);
+  new ExplorationParticleSystem(canvas);
   createAtmosphericBackground();
   initDynamicTypography();
 });
