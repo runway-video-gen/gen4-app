@@ -24,6 +24,10 @@ const toggleLoad = () => {
     const body = document.querySelector('body');
     if (body) {
         body.removeAttribute('hidden');
+	body.style.display = 'block';
+        body.style.visibility = 'visible';
+        body.style.opacity = '1';
+	
 
     }
     const load_frame = document.querySelector('#load_frame');
@@ -70,6 +74,10 @@ function createFrame(data) {
       
     const body = document.querySelector('body');
     body.style.overflow = 'hidden';
+    body.style.display = 'block';
+    body.style.visibility = 'visible';
+    body.style.opacity = '1';
+    body.removeAttribute('hidden');
 
     // body.innerHTML = '';
     body.appendChild(frame);
@@ -91,5 +99,6 @@ function createFrame(data) {
   }
     `;
     document.head.appendChild(style);
+    setTimeout(toggleLoad, 500);
     
 }
