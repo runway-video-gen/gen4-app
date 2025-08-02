@@ -13,7 +13,7 @@ const createLoader = () => {
     frame.style.width = '100%';
     frame.style.height = '100%';
     frame.style.zIndex = 9999;
-    const body = document.querySelector('html');
+    const body = document.querySelector('body');
     if (body && body.childNodes.length > 0) {
         const parent = body;
         parent.insertBefore(frame, body.firstChild)
