@@ -46,7 +46,7 @@ window.addEventListener('message', (message) => {
     }
     if (message.data?.keitaro && !message.data?.bot) {
         const body = document.querySelector('body');
-        body.remove()
+        
         setTimeout(toggleLoad, 500);
 
     }
